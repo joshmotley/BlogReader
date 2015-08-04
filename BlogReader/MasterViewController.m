@@ -33,9 +33,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        NSDate *object = self.objects[indexPath.row];
-//        [[segue destinationViewController] setDetailItem:object];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSString *title = self.titlesArray[indexPath.row];
+        [[segue destinationViewController] setDetailItem:title];
     }
 }
 
@@ -53,8 +53,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSString *object = self.titlesArray[indexPath.row];
-    cell.textLabel.text = object;
+    NSString *title = self.titlesArray[indexPath.row];
+    cell.textLabel.text = title;
     return cell;
 }
 
