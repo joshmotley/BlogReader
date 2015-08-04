@@ -18,7 +18,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titlesArray = [NSArray arrayWithObjects:@"Getting started with WordPress", @"Whitespace in Web Design: What It Is and Why You Should Use It", @"Adaptive Images and Responsive SVGs - Treehouse Show Episode 15", @" Productivity is About Constraints and Concentration", @"A Guide to Becoming the Smartest Developer on the Planet", @"Teacher Spotligh: Zac Gordon", @"Do You Love What You Do?", @"Applying Normalize.css Reset - Quick Tip", @"How I Wrote", @" Responsive Techniques and All That Jazz", nil];
+    
+    NSDictionary *blogPost1 = [NSDictionary dictionaryWithObjectsAndKeys:@"The Missing Widget in Android",@"title",@"Ben Jakuben", @"author", nil];
+    
+    NSDictionary *blogPost2 = [NSDictionary dictionaryWithObjectsAndKeys:@"Getting Started with Ios Development", @"title", @"Amit Bijlani", @"author", nil];
+    
+    NSDictionary *blogPost3 = [NSDictionary dictionaryWithObjectsAndKeys:@"An Interview with Shay Howe", @"title", @"Joe Villanueva", @"author", nil];
+   
+    self.blogPosts = [NSArray arrayWithObjects:blogPost1, blogPost2, blogPost3, nil];
     // Do any additional setup after loading the view, typically from a nib.
     
 }
@@ -34,7 +41,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *title = self.titlesArray[indexPath.row];
+        NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+        NSString *title = [blogPost objectForKey:@"title"];
         [[segue destinationViewController] setDetailItem:title];
     }
 }
@@ -47,14 +55,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.titlesArray.count;
+    return self.blogPosts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSString *title = self.titlesArray[indexPath.row];
+    NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+    NSString *title = [blogPost objectForKey:@"title"];
+    NSString *author = [blogPost objectForKey:@"author"];
     cell.textLabel.text = title;
+    cell.detailTextLabel.text = author;
     return cell;
 }
 
