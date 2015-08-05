@@ -15,6 +15,7 @@
 		26527EEF1B701A9000312AC1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26527EEE1B701A9000312AC1 /* Images.xcassets */; };
 		26527EF21B701A9000312AC1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26527EF01B701A9000312AC1 /* LaunchScreen.xib */; };
 		26527EFE1B701A9100312AC1 /* BlogReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26527EFD1B701A9100312AC1 /* BlogReaderTests.m */; };
+		26527F0C1B71A80700312AC1 /* BlogPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 26527F0B1B71A80700312AC1 /* BlogPost.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		26527EF71B701A9100312AC1 /* BlogReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlogReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26527EFC1B701A9100312AC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26527EFD1B701A9100312AC1 /* BlogReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlogReaderTests.m; sourceTree = "<group>"; };
+		26527F0A1B71A80700312AC1 /* BlogPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogPost.h; sourceTree = "<group>"; };
+		26527F0B1B71A80700312AC1 /* BlogPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogPost.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				26527EE31B701A9000312AC1 /* AppDelegate.m */,
 				26527EE51B701A9000312AC1 /* MasterViewController.h */,
 				26527EE61B701A9000312AC1 /* MasterViewController.m */,
+				26527F0A1B71A80700312AC1 /* BlogPost.h */,
+				26527F0B1B71A80700312AC1 /* BlogPost.m */,
 				26527EE81B701A9000312AC1 /* DetailViewController.h */,
 				26527EE91B701A9000312AC1 /* DetailViewController.m */,
 				26527EEB1B701A9000312AC1 /* Main.storyboard */,
@@ -226,6 +231,7 @@
 			files = (
 				26527EE41B701A9000312AC1 /* AppDelegate.m in Sources */,
 				26527EE71B701A9000312AC1 /* MasterViewController.m in Sources */,
+				26527F0C1B71A80700312AC1 /* BlogPost.m in Sources */,
 				26527EE11B701A9000312AC1 /* main.m in Sources */,
 				26527EEA1B701A9000312AC1 /* DetailViewController.m in Sources */,
 			);
