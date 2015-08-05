@@ -32,8 +32,9 @@
     self.blogPosts = [NSMutableArray array];
     
     for (NSDictionary *bpDictionary in blogPostsArray) {
-        BlogPost *blogPost = [[BlogPost alloc]initWithTitle:[dataDictionary objectForKey:@"title"]];
-        blogPost.author = [dataDictionary objectForKey:@"author"];
+        BlogPost *blogPost = [[BlogPost alloc]initWithTitle:[bpDictionary objectForKey:@"title"]];
+        blogPost.author = [bpDictionary objectForKey:@"author"];
+        
         [self.blogPosts addObject:blogPost];
     }
     // Do any additional setup after loading the view, typically from a nib.
@@ -54,8 +55,8 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
-        NSString *title = [blogPost objectForKey:@"title"];
-        [[segue destinationViewController] setDetailItem:blogPost];
+        NSString *title = blogPost.title;
+        [[segue destinationViewController] setDetailItem:title];
     }
 }
 
@@ -76,8 +77,12 @@
     BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
     NSString *title = blogPost.title;
     NSString *author = blogPost.author;
+    
+    
+    cell.imageView.image = [UIImage imageNamed:@"icon29@2x.png"];
     cell.textLabel.text = title;
     cell.detailTextLabel.text = author;
+    
     return cell;
 }
 

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) NSString *title;
 @property (weak, nonatomic) NSString *author;
 
+
 -(instancetype)initWithTitle:(NSString *)_title;
 
 @end

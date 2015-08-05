@@ -12,5 +12,7 @@
 
 @property (strong, nonatomic) NSMutableArray *blogPosts;
 
+
+
 @end
 
