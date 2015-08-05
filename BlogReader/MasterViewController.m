@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "BlogPost.h"
 
 
 @implementation MasterViewController
@@ -25,10 +26,16 @@
     
     
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    
+    NSArray *blogPostsArray = [dataDictionary objectForKey:@"posts"];
     
    
-    self.blogPosts = [dataDictionary objectForKey:@"posts"];
+    self.blogPosts = [NSMutableArray array];
+    
+    for (NSDictionary *bpDictionary in blogPostsArray) {
+        BlogPost *blogPost = [[BlogPost alloc]initWithTitle:[dataDictionary objectForKey:@"title"]];
+        blogPost.author = [dataDictionary objectForKey:@"author"];
+        [self.blogPosts addObject:blogPost];
+    }
     // Do any additional setup after loading the view, typically from a nib.
     
     
@@ -46,9 +53,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+        BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
         NSString *title = [blogPost objectForKey:@"title"];
-        [[segue destinationViewController] setDetailItem:title];
+        [[segue destinationViewController] setDetailItem:blogPost];
     }
 }
 
@@ -66,9 +73,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
-    NSString *title = [blogPost objectForKey:@"title"];
-    NSString *author = [blogPost objectForKey:@"author"];
+    BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+    NSString *title = blogPost.title;
+    NSString *author = blogPost.author;
     cell.textLabel.text = title;
     cell.detailTextLabel.text = author;
     return cell;
