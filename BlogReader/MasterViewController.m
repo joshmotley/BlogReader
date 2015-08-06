@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     NSURL *blogURL = [NSURL URLWithString:@"http://blog.teamtreehouse.com/api/get_recent_summary/"];
     
     NSData *jsonData = [NSData dataWithContentsOfURL:blogURL];
@@ -28,6 +29,7 @@
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     NSArray *blogPostsArray = [dataDictionary objectForKey:@"posts"];
     
+    
    
     self.blogPosts = [NSMutableArray array];
     
@@ -35,6 +37,11 @@
         BlogPost *blogPost = [[BlogPost alloc]initWithTitle:[bpDictionary objectForKey:@"title"]];
         blogPost.author = [bpDictionary objectForKey:@"author"];
         blogPost.thumbnail = [bpDictionary objectForKey:@"thumbnail"];
+        blogPost.date = [bpDictionary objectForKeyedSubscript:@"date"];
+        
+       
+      
+        
         
         
         
@@ -79,10 +86,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
+    tableView.separatorInset = UIEdgeInsetsZero;
+    
+   
+    
     BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
     
+   
+    
+    
+  
     NSString *title = blogPost.title;
-    NSString *author = blogPost.author;
+    NSString *author = [NSString stringWithFormat:@"Author: %@ Date : %@", blogPost.author, [blogPost formattedDate]];
     
     if([blogPost.thumbnail isKindOfClass:[NSString class]]){
 
@@ -90,6 +105,7 @@
         UIImage *thumbnailPicture = [UIImage imageWithData:dataPic];
         cell.imageView.image = thumbnailPicture;}else{
             cell.imageView.image = [UIImage imageNamed:@"icon29@2x.png"];
+            cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
         }
   
     
