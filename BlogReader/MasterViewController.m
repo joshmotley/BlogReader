@@ -34,6 +34,11 @@
     for (NSDictionary *bpDictionary in blogPostsArray) {
         BlogPost *blogPost = [[BlogPost alloc]initWithTitle:[bpDictionary objectForKey:@"title"]];
         blogPost.author = [bpDictionary objectForKey:@"author"];
+        blogPost.thumbnail = [bpDictionary objectForKey:@"thumbnail"];
+        
+        
+        
+    
         
         [self.blogPosts addObject:blogPost];
     }
@@ -75,11 +80,21 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+    
     NSString *title = blogPost.title;
     NSString *author = blogPost.author;
     
+    if([blogPost.thumbnail isKindOfClass:[NSString class]]){
+
+    NSData *dataPic = [NSData dataWithContentsOfURL:blogPost.thumbnailURL];
+        UIImage *thumbnailPicture = [UIImage imageWithData:dataPic];
+        cell.imageView.image = thumbnailPicture;}else{
+            cell.imageView.image = [UIImage imageNamed:@"icon29@2x.png"];
+        }
+  
     
-    cell.imageView.image = [UIImage imageNamed:@"icon29@2x.png"];
+    
+    
     cell.textLabel.text = title;
     cell.detailTextLabel.text = author;
     

@@ -10,10 +10,13 @@
 
 @interface BlogPost : NSObject
 
-@property (weak, nonatomic) NSString *title;
-@property (weak, nonatomic) NSString *author;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *author;
+@property (strong, nonatomic) NSString *thumbnail;
 
 
 -(instancetype)initWithTitle:(NSString *)_title;
+
+-(NSURL *)thumbnailURL;
 
 @end
